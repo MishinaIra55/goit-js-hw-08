@@ -11,10 +11,25 @@ const input = document.querySelector('.feedback-form');
             email : email.value,
             message: message.value,
          };
-         
 
          localStorage.setItem("feedback-form-state", JSON.stringify(settings));
+         
+         const savedSettings = localStorage.getItem("feedback-form-state");
+         const parsedSettings = JSON.parse(savedSettings);
+         console.log(parsedSettings);
 });
+
+//При сабмите формы 
+input.addEventListener('submit', onSubmitForm);
+
+function onSubmitForm (event) {
+   //отменяем перезагрузку страницы
+   event.preventDefault();
+  // Очищаем поля формы 
+   event.target.reset(); 
+   //Очищаем хоанилище
+    localStorage.removeItem('feedback-form-state');
+}
 
 
 
